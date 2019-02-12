@@ -13,7 +13,6 @@ import {NgForm} from '@angular/forms';
 export class WizardStepComponent implements AfterContentInit {
   @Input() title: string;
   @Input() hidden: boolean = false;
-  @Input() isValid: boolean = true;
   @Input() showNext: boolean = true;
   @Input() showPrev: boolean = true;
   @ContentChild(NgForm) form: NgForm;
@@ -23,6 +22,17 @@ export class WizardStepComponent implements AfterContentInit {
   isDisabled: boolean = true;
 
   constructor() {
+  }
+
+  private _isValid: boolean = true;
+
+  get isValid(): boolean {
+    return this._isValid;
+  }
+
+  @Input()
+  set isValid(value: boolean) {
+    this._isValid = value;
   }
 
   private _isActive: boolean = false;
@@ -35,12 +45,20 @@ export class WizardStepComponent implements AfterContentInit {
   set isActive(isActive: boolean) {
     this._isActive = isActive;
     this.isDisabled = false;
-  }
-
-  ngAfterContentInit(): void {
-    console.log(this.form);
     if (this.form) {
       this.isValid = this.form.form.valid;
     }
+  }
+
+  ngAfterContentInit(): void {
+    if (this.form) {
+      this.isValid = this.form.form.valid;
+    }
+
+    this.form.statusChanges.subscribe(() => {
+      if (this.form) {
+        this.isValid = this.form.form.valid;
+      }
+    });
   }
 }
