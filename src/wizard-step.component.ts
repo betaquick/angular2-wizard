@@ -1,30 +1,36 @@
-import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, EventEmitter, Input, Output, QueryList, TemplateRef } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'wizard-step',
   template:
         `
-	  <div [hidden]="!isActive">
-		  <ng-container *ngIf="templateContent else content">
-			  <ng-template [ngTemplateOutlet]="templateContent"></ng-template>
-		  </ng-container>
+		<div [hidden]="!isActive">
+			<ng-container *ngIf="templateContent else content">
+				<ng-template [ngTemplateOutlet]="templateContent"></ng-template>
 
-		  <ng-content #content></ng-content>
-	  </div>
+			</ng-container>
+
+			<ng-template #content>
+				<ng-content></ng-content>
+			</ng-template>
+		</div>
   `
 })
-export class WizardStepComponent {
+export class WizardStepComponent implements AfterContentInit {
   @Input() title: string;
   @Input() hidden: boolean = false;
   @Input() isValid: boolean = true;
   @Input() showNext: boolean = true;
   @Input() showPrev: boolean = true;
+  @Input() templateContent: TemplateRef<void>;
+
+  @ContentChildren(NgForm) forms: QueryList<NgForm>;
 
   @Output() onNext: EventEmitter<any> = new EventEmitter<any>();
   @Output() onPrev: EventEmitter<any> = new EventEmitter<any>();
   @Output() onComplete: EventEmitter<any> = new EventEmitter<any>();
 
-  @Input() templateContent: TemplateRef<void>;
   isDisabled: boolean = true;
 
   constructor() {
@@ -42,4 +48,11 @@ export class WizardStepComponent {
     this.isDisabled = false;
   }
 
+  ngAfterContentInit(): void {
+    const form: NgForm = this.forms.first;
+
+    if (form) {
+      this.isValid = form.form.valid;
+    }
+  }
 }
