@@ -13,19 +13,29 @@ import {NgForm} from '@angular/forms';
 export class WizardStepComponent implements AfterContentInit {
   @Input() title: string;
   @Input() hidden: boolean = false;
-  @Input() isValid: boolean = true;
   @Input() showNext: boolean = true;
   @Input() showPrev: boolean = true;
-
   @ContentChild(NgForm) form: NgForm;
-
   @Output() onNext: EventEmitter<any> = new EventEmitter<any>();
   @Output() onPrev: EventEmitter<any> = new EventEmitter<any>();
   @Output() onComplete: EventEmitter<any> = new EventEmitter<any>();
-
   isDisabled: boolean = true;
 
   constructor() {
+  }
+
+  private _isValid: boolean = true;
+
+  get isValid(): boolean {
+    if (this.form) {
+      return this.form.form.valid;
+    }
+    return this._isValid;
+  }
+
+  @Input()
+  set isValid(value: boolean) {
+    this._isValid = value;
   }
 
   private _isActive: boolean = false;
@@ -43,7 +53,7 @@ export class WizardStepComponent implements AfterContentInit {
   ngAfterContentInit(): void {
     console.log(this.form);
     if (this.form) {
-      this.isValid = this.form.form.valid;
+      this._isValid = this.form.form.valid;
     }
   }
 }
