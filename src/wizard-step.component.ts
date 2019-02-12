@@ -35,12 +35,13 @@ export class WizardStepComponent implements AfterContentInit {
   set isActive(isActive: boolean) {
     this._isActive = isActive;
     this.isDisabled = false;
-    if (this.form) {
+    /*if (this.form) {
       this.isValid = this.form.form.valid;
-    }
+    }*/
   }
 
   ngAfterContentInit(): void {
+    console.log(this.form);
     if (this.form) {
       this.form.statusChanges.subscribe(() => this.isValid = this.form.form.valid);
     }
