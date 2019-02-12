@@ -52,13 +52,7 @@ export class WizardStepComponent implements AfterContentInit {
 
   ngAfterContentInit(): void {
     if (this.form) {
-      this.isValid = this.form.form.valid;
+      this.form.statusChanges.subscribe(() => this.isValid = this.form.form.valid);
     }
-
-    this.form.statusChanges.subscribe(() => {
-      if (this.form) {
-        this.isValid = this.form.form.valid;
-      }
-    });
   }
 }
