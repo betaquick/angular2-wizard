@@ -24,11 +24,11 @@ import {WizardStepComponent} from './wizard-step.component';
 				</button>
 				<button type="button" class="btn btn-secondary float-right" (click)="next()"
 				        [disabled]="activeStep.isChecked && !activeStep.isValid"
-				        [hidden]="!hasNextStep || !activeStep.showNext">Next
+				        [hidden]="!hasNextStep || !activeStep.showNext">{{ nextText }}
 				</button>
 				<button type="button" class="btn btn-secondary float-right" (click)="complete()"
 				        [disabled]="activeStep.isChecked && !activeStep.isValid"
-				        [hidden]="hasNextStep">{{ nextText || 'Next' }}
+				        [hidden]="hasNextStep">{{ doneText }}
 				</button>
 			</div>
 		</div>`
@@ -49,8 +49,9 @@ export class WizardComponent implements AfterContentInit, OnChanges {
   @ContentChildren(WizardStepComponent)
   wizardSteps: QueryList<WizardStepComponent>;
   @Input() forceStep: number;
-  @Input() previousText: string;
-  @Input() nextText: string;
+  @Input() previousText: string = 'Previous';
+  @Input() nextText: string = 'Next';
+  @Input() doneText: string = 'Done';
   @Output() cancel: EventEmitter<any> = new EventEmitter<any>();
 
   private _steps: Array<WizardStepComponent> = [];
