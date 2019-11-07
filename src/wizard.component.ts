@@ -18,9 +18,9 @@ import {WizardStepComponent} from './wizard-step.component';
 				<ng-content></ng-content>
 			</div>
 			<div class="card-footer" [hidden]="isCompleted">
-                		<button type="button" class="btn btn-danger float-left" (click)="cancelForm()">Cancel</button>
+                		<button type="button" class="btn btn-outline-danger float-left ml-2" (click)="cancelForm()">Cancel</button>
 				<button type="button" class="btn btn-secondary float-left" (click)="previous()" [hidden]="!hasPrevStep || !activeStep.showPrev">
-					Previous
+					{{ previousText || 'Previous' }}
 				</button>
 				<button type="button" class="btn btn-secondary float-right" (click)="next()"
 				        [disabled]="activeStep.isChecked && !activeStep.isValid"
@@ -28,7 +28,7 @@ import {WizardStepComponent} from './wizard-step.component';
 				</button>
 				<button type="button" class="btn btn-secondary float-right" (click)="complete()"
 				        [disabled]="activeStep.isChecked && !activeStep.isValid"
-				        [hidden]="hasNextStep">Done
+				        [hidden]="hasNextStep">{{ nextText || 'Next' }}
 				</button>
 			</div>
 		</div>`
@@ -49,6 +49,8 @@ export class WizardComponent implements AfterContentInit, OnChanges {
   @ContentChildren(WizardStepComponent)
   wizardSteps: QueryList<WizardStepComponent>;
   @Input() forceStep: number;
+  @Input() previousText: string;
+  @Input() nextText: string;
   @Output() cancel: EventEmitter<any> = new EventEmitter<any>();
 
   private _steps: Array<WizardStepComponent> = [];
