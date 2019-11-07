@@ -18,7 +18,7 @@ import {WizardStepComponent} from './wizard-step.component';
 				<ng-content></ng-content>
 			</div>
 			<div class="card-footer" [hidden]="isCompleted">
-                		<button type="button" class="btn btn-outline-danger float-left ml-2" (click)="cancelForm()">Cancel</button>
+                		<button type="button" class="btn btn-outline-danger float-left mr-2" (click)="cancelForm()">Cancel</button>
 				<button type="button" class="btn btn-secondary float-left" (click)="previous()" [hidden]="!hasPrevStep || !activeStep.showPrev">
 					{{ previousText }}
 				</button>
