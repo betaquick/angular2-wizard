@@ -20,7 +20,7 @@ import {WizardStepComponent} from './wizard-step.component';
 			<div class="card-footer" [hidden]="isCompleted">
                 		<button type="button" class="btn btn-outline-danger float-left ml-2" (click)="cancelForm()">Cancel</button>
 				<button type="button" class="btn btn-secondary float-left" (click)="previous()" [hidden]="!hasPrevStep || !activeStep.showPrev">
-					{{ previousText || 'Previous' }}
+					{{ previousText }}
 				</button>
 				<button type="button" class="btn btn-secondary float-right" (click)="next()"
 				        [disabled]="activeStep.isChecked && !activeStep.isValid"
