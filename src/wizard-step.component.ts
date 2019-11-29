@@ -21,11 +21,7 @@ export class WizardStepComponent {
   isDisabled: boolean = true;
   isChecked: boolean = false;
 
-  constructor() {
-  }
-
   private _isActive: boolean = false;
-
   get isActive(): boolean {
     return this._isActive;
   }
@@ -35,5 +31,8 @@ export class WizardStepComponent {
     this._isActive = isActive;
     this.isChecked = false;
     this.isDisabled = false;
+  }
+
+  constructor() {
   }
 }
