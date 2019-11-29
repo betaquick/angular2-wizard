@@ -125,7 +125,7 @@ export class WizardComponent implements AfterContentInit, OnChanges {
     if (this.hasNextStep) {
       let nextStep: WizardStepComponent = this.steps[this.activeStepIndex + 1];
 
-      if (!this.activeStep.isValid) {
+      if (!this.activeStep.skipValidation && !this.activeStep.isValid) {
         this.activeStep.isChecked = true;
       } else {
         this.activeStep.onNext.emit();
