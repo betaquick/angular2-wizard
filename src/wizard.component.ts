@@ -52,6 +52,7 @@ export class WizardComponent implements AfterContentInit, OnChanges {
   @Input() previousText: string = 'Previous';
   @Input() nextText: string = 'Next';
   @Input() doneText: string = 'Done';
+  @Input() skipValidation: boolean = false;
   @Output() cancel: EventEmitter<any> = new EventEmitter<any>();
 
   private _steps: Array<WizardStepComponent> = [];
@@ -64,7 +65,7 @@ export class WizardComponent implements AfterContentInit, OnChanges {
   }
 
   ngAfterContentInit() {
-    this.wizardSteps.forEach(step => this._steps.push(step));
+    this.wizardSteps.forEach((step: WizardStepComponent) => this._steps.push(step));
     if (this.steps.length) {
       this.steps[0].isActive = true;
     }
@@ -144,11 +145,12 @@ export class WizardComponent implements AfterContentInit, OnChanges {
   }
 
   public complete(): void {
-    if (!this.activeStep.isValid) {
+    if (!this.skipValidation && this.steps.some(step => !step.isValid)) {
+      console.log(this.steps.findIndex(step => !step.isValid));
       this.activeStep.isChecked = true;
     } else {
-      this.activeStep.onComplete.emit();
       this._isCompleted = true;
+      this.activeStep.onComplete.emit();
     }
   }
 
