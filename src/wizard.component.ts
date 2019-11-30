@@ -26,11 +26,11 @@ import {WizardStepComponent} from './wizard-step.component';
 				  {{ previousText }}
 			  </button>
 			  <button type="button" class="btn btn-secondary float-right" (click)="next()"
-			          [disabled]="activeStep.isChecked && !activeStep.isValid"
+			          [disabled]="!activeStep.skipValidation && activeStep.isChecked && !activeStep.isValid"
 			          [hidden]="!hasNextStep || !activeStep.showNext">{{ nextText }}
 			  </button>
 			  <button type="button" class="btn btn-secondary float-right" (click)="complete()"
-			          [disabled]="activeStep.isChecked && !activeStep.isValid"
+			          [disabled]="!activeStep.skipValidation && activeStep.isChecked && !activeStep.isValid"
 			          [hidden]="hasNextStep">{{ doneText }}
 			  </button>
 		  </div>
@@ -149,8 +149,8 @@ export class WizardComponent implements AfterContentInit, OnChanges {
 
   public complete(): void {
     if (!this.skipValidation && this.steps.some(step => !step.isValid)) {
-      // TODO - flash step header @ this.steps.findIndex(step => !step.isValid)
       this.activeStep.isChecked = true;
+      this.revertToStep(this.steps.findIndex(step => !step.isValid));
     } else {
       this._isCompleted = true;
       this.activeStep.onComplete.emit();
