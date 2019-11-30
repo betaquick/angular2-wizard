@@ -30,7 +30,6 @@ export class WizardStepComponent {
   @Input('isActive')
   set isActive(isActive: boolean) {
     this._isActive = isActive;
-    this.isChecked = false;
     this.isDisabled = false;
   }
 

@@ -11,7 +11,7 @@ import {WizardStepComponent} from './wizard-step.component';
 				  <li class="nav-item" *ngFor="let step of steps"
 				      [ngClass]="{'active': step.isActive, 'enabled': !step.isDisabled, 'disabled': step.isDisabled, 'completed': isCompleted}">
 					  <a (click)="goToStep(step)">{{step.title}}</a>
-					  <i *ngIf="step.isChecked" class="fas"
+					  <i *ngIf="step.isChecked" class="ml-1 fas"
 					     [ngClass]="{'text-warning fa-exclamation-circle': !step.isValid, 'text-success fa-circle-check': step.isValid}">
 					  </i>
 				  </li>
