@@ -128,9 +128,9 @@ export class WizardComponent implements AfterContentInit, OnChanges {
     if (this.hasNextStep) {
       let nextStep: WizardStepComponent = this.steps[this.activeStepIndex + 1];
 
-      if (!this.activeStep.skipValidation && !this.activeStep.isValid) {
-        this.activeStep.isChecked = true;
-      } else {
+      this.activeStep.isChecked = true;
+
+      if (this.activeStep.skipValidation || this.activeStep.isValid) {
         this.activeStep.onNext.emit();
         nextStep.isDisabled = false;
         this.activeStep = nextStep;
@@ -149,7 +149,7 @@ export class WizardComponent implements AfterContentInit, OnChanges {
 
   public complete(): void {
     if (!this.skipValidation && this.steps.some(step => !step.isValid)) {
-      console.log(this.steps.findIndex(step => !step.isValid));
+      // TODO - flash step header @ this.steps.findIndex(step => !step.isValid)
       this.activeStep.isChecked = true;
     } else {
       this._isCompleted = true;
