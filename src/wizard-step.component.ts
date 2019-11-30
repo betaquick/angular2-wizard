@@ -14,6 +14,7 @@ export class WizardStepComponent {
   @Input() hidden: boolean = false;
   @Input() showNext: boolean = true;
   @Input() isValid: boolean = true;
+  @Input() skipValidation: boolean = false;
   @Input() showPrev: boolean = true;
   @Output() onNext: EventEmitter<any> = new EventEmitter<any>();
   @Output() onPrev: EventEmitter<any> = new EventEmitter<any>();
@@ -29,7 +30,6 @@ export class WizardStepComponent {
   @Input('isActive')
   set isActive(isActive: boolean) {
     this._isActive = isActive;
-    this.isChecked = false;
     this.isDisabled = false;
   }
 
