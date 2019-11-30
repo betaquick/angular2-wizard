@@ -26,7 +26,7 @@ import {WizardStepComponent} from './wizard-step.component';
 				  {{ previousText }}
 			  </button>
 			  <button type="button" class="btn btn-secondary float-right" (click)="next()"
-			          [disabled]="activeStep.isChecked && !activeStep.isValid"
+			          [disabled]="!activeStep.skipValidation && activeStep.isChecked && !activeStep.isValid"
 			          [hidden]="!hasNextStep || !activeStep.showNext">{{ nextText }}
 			  </button>
 			  <button type="button" class="btn btn-secondary float-right" (click)="complete()"
