@@ -149,8 +149,8 @@ export class WizardComponent implements AfterContentInit, OnChanges {
 
   public complete(): void {
     if (!this.skipValidation && this.steps.some(step => !step.isValid)) {
-      // TODO - flash step header @ this.steps.findIndex(step => !step.isValid)
       this.activeStep.isChecked = true;
+      this.revertToStep(this.steps.findIndex(step => !step.isValid));
     } else {
       this._isCompleted = true;
       this.activeStep.onComplete.emit();
