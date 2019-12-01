@@ -5,7 +5,7 @@
     "build": "ngc -p tsconfig.json",
     "lint": "tslint src/**/*.ts",
     "test": "karma start karma.conf.js",
-    "prepublish": "tsc",
+    "prepare": "npm run build",
     "tsc": "tsc"
   },
   "repository": {
