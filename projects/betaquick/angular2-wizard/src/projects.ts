@@ -4,4 +4,4 @@
 
 export * from './lib/wizard.component';
 export * from './lib/wizard-step.component';
-export * from './lib/angular2-wizard.module';
+export * from './lib/form-wizard.module';

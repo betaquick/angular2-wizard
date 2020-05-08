@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {WizardComponent} from './wizard.component';
 import {WizardStepComponent} from './wizard-step.component';
+import {CommonModule} from '@angular/common';
 
 
 @NgModule({
@@ -8,11 +9,13 @@ import {WizardStepComponent} from './wizard-step.component';
     WizardComponent,
     WizardStepComponent
   ],
-  imports: [],
+  imports: [
+    CommonModule
+  ],
   exports: [
     WizardComponent,
     WizardStepComponent
   ]
 })
-export class Angular2WizardModule {
+export class FormWizardModule {
 }
