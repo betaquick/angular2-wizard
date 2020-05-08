@@ -19,11 +19,11 @@
       "dom"
     ],
     "paths": {
-      "@betaquick/form-wizard": [
-        "dist/betaquick/form-wizard"
+      "@betaquick/angular2-wizard": [
+        "dist/betaquick/angular2-wizard"
       ],
-      "@betaquick/form-wizard/*": [
-        "dist/betaquick/form-wizard/*"
+      "@betaquick/angular2-wizard/*": [
+        "dist/betaquick/angular2-wizard/*"
       ]
     }
   },
