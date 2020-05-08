@@ -1,0 +1,145 @@
+// Karma configuration file, see link for more information
+// https://karma-runner.github.io/1.0/config/configuration-file.html
+
+module.exports = function (config) {
+  config.set({
+    basePath: '',
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'),
+      require('karma-jasmine-html-reporter'),
+      require('karma-coverage-istanbul-reporter'),
+      require('@angular-devkit/build-angular/plugins/karma')
+    ],
+    client: {
+      clearContext: false // leave Jasmine Spec Runner output visible in browser
+    },
+    coverageIstanbulReporter: {
+      dir: require('path').join(__dirname, '../../coverage/form-wizard'),
+      reports: ['html', 'lcovonly', 'text-summary'],
+      fixWebpackSourcePaths: true
+    },
+    reporters: ['progress', 'kjhtml'],
+    port: 9876,
+    colors: true,
+    logLevel: config.LOG_INFO,
+    autoWatch: true,
+    browsers: ['Chrome'],
+    singleRun: false,
+    restartOnFileChange: true
+  });
+};
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/form-wizard",
+  "lib": {
+    "entryFile": "src/public-api.ts"
+  }
+}{
+  "name": "form-wizard",
+  "version": "0.0.1",
+  "lockfileVersion": 1,
+  "requires": true,
+  "dependencies": {
+    "bootstrap": {
+      "version": "4.4.1",
+      "resolved": "https://registry.npmjs.org/bootstrap/-/bootstrap-4.4.1.tgz",
+      "integrity": "sha512-tbx5cHubwE6e2ZG7nqM3g/FZ5PQEDMWmMGNrCUBVRPHXTJaH7CBDdsLeu3eCh3B1tzAxTnAbtmrzvWEvT2NNEA=="
+    }
+  }
+}
+{
+  "name": "@betaquick/angular2-wizard",
+  "version": "8.0.1-0",
+  "peerDependencies": {
+    "@angular/common": "^8.2.14",
+    "@angular/core": "^8.2.14",
+    "bootstrap": "^4.4.1"
+  }
+}
+# FormWizard
+
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.14.
+
+## Code scaffolding
+
+Run `ng generate component component-name --project form-wizard` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project form-wizard`.
+> Note: Don't forget to add `--project form-wizard` or else it will be added to the default project in your `angular.json` file. 
+
+## Build
+
+Run `ng build form-wizard` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Publishing
+
+After building your library with `ng build form-wizard`, go to the dist folder `cd dist/form-wizard` and run `npm publish`.
+
+## Running unit tests
+
+Run `ng test form-wizard` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/lib",
+    "target": "es2015",
+    "declaration": true,
+    "inlineSources": true,
+    "types": [],
+    "lib": [
+      "dom",
+      "es2018"
+    ]
+  },
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    "enableResourceInlining": true
+  },
+  "exclude": [
+    "src/test.ts",
+    "**/*.spec.ts"
+  ]
+}
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/spec",
+    "types": [
+      "jasmine",
+      "node"
+    ]
+  },
+  "files": [
+    "src/test.ts"
+  ],
+  "include": [
+    "**/*.spec.ts",
+    "**/*.d.ts"
+  ]
+}
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "lib",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "lib",
+      "kebab-case"
+    ]
+  }
+}
+

@@ -3,41 +3,6 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "form-wizard": {
-      "projectType": "library",
-      "root": "projects/form-wizard",
-      "sourceRoot": "projects/form-wizard/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/form-wizard/tsconfig.lib.json",
-            "project": "projects/form-wizard/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/form-wizard/src/test.ts",
-            "tsConfig": "projects/form-wizard/tsconfig.spec.json",
-            "karmaConfig": "projects/form-wizard/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/form-wizard/tsconfig.lib.json",
-              "projects/form-wizard/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "demo": {
       "projectType": "application",
       "schematics": {},
@@ -153,6 +118,41 @@
             "production": {
               "devServerTarget": "demo:serve:production"
             }
+          }
+        }
+      }
+    },
+    "@betaquick/form-wizard": {
+      "projectType": "library",
+      "root": "projects/betaquick/form-wizard",
+      "sourceRoot": "projects/betaquick/form-wizard/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/betaquick/form-wizard/tsconfig.lib.json",
+            "project": "projects/betaquick/form-wizard/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/betaquick/form-wizard/src/test.ts",
+            "tsConfig": "projects/betaquick/form-wizard/tsconfig.spec.json",
+            "karmaConfig": "projects/betaquick/form-wizard/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/betaquick/form-wizard/tsconfig.lib.json",
+              "projects/betaquick/form-wizard/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }

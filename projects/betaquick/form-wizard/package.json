@@ -1,5 +1,5 @@
 {
-  "name": "@betaquick/angular2-wizard",
+  "name": "@betaquick/form-wizard",
   "version": "8.0.1-0",
   "peerDependencies": {
     "@angular/common": "^8.2.14",
