@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
-  selector: 'wizard-step',
+  selector: 'lib-wizard-step',
   template:
         `
 		<div [hidden]="!isActive">
@@ -11,18 +11,22 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 })
 export class WizardStepComponent {
   @Input() title: string;
-  @Input() hidden: boolean = false;
-  @Input() showNext: boolean = true;
-  @Input() isValid: boolean = true;
-  @Input() skipValidation: boolean = false;
-  @Input() showPrev: boolean = true;
+  @Input() hidden = false;
+  @Input() showNext = true;
+  @Input() isValid = true;
+  @Input() skipValidation = false;
+  @Input() showPrev = true;
+  // tslint:disable-next-line:no-output-on-prefix
   @Output() onNext: EventEmitter<any> = new EventEmitter<any>();
+  // tslint:disable-next-line:no-output-on-prefix
   @Output() onPrev: EventEmitter<any> = new EventEmitter<any>();
+  // tslint:disable-next-line:no-output-on-prefix
   @Output() onComplete: EventEmitter<any> = new EventEmitter<any>();
-  isDisabled: boolean = true;
-  isChecked: boolean = false;
+  isDisabled = true;
+  isChecked = false;
 
-  private _isActive: boolean = false;
+  // tslint:disable-next-line:variable-name
+  private _isActive = false;
   get isActive(): boolean {
     return this._isActive;
   }

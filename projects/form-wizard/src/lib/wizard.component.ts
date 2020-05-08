@@ -2,7 +2,7 @@ import {AfterContentInit, Component, ContentChildren, EventEmitter, Input, Outpu
 import {WizardStepComponent} from './wizard-step.component';
 
 @Component({
-  selector: 'form-wizard',
+  selector: 'lib-form-wizard',
   template:
         `
 	  <div class="card">
@@ -51,17 +51,19 @@ import {WizardStepComponent} from './wizard-step.component';
 export class WizardComponent implements AfterContentInit {
   @ContentChildren(WizardStepComponent)
   wizardSteps: QueryList<WizardStepComponent>;
-  @Input() previousText: string = 'Previous';
-  @Input() nextText: string = 'Next';
-  @Input() doneText: string = 'Done';
-  @Input() skipValidation: boolean = false;
+  @Input() previousText = 'Previous';
+  @Input() nextText = 'Next';
+  @Input() doneText = 'Done';
+  @Input() skipValidation = false;
   @Output() cancel: EventEmitter<any> = new EventEmitter<any>();
 
+  // tslint:disable-next-line:variable-name
   private _steps: Array<WizardStepComponent> = [];
-  private _isCompleted: boolean = false;
+  // tslint:disable-next-line:variable-name
+  private _isCompleted = false;
 
-  @Output()
-  onStepChanged: EventEmitter<WizardStepComponent> = new EventEmitter<WizardStepComponent>();
+  // tslint:disable-next-line:no-output-on-prefix
+  @Output() onStepChanged: EventEmitter<WizardStepComponent> = new EventEmitter<WizardStepComponent>();
 
   constructor() {
   }
@@ -107,15 +109,15 @@ export class WizardComponent implements AfterContentInit {
 
   public revertToStep(stepIndex: any) {
     this._isCompleted = false;
-    let nextStep: WizardStepComponent = this.steps[stepIndex];
+    const nextStep: WizardStepComponent = this.steps[stepIndex];
     this.goToStep(nextStep);
-  };
+  }
 
   public reset(stepIndex = 0) {
-    let nextStep: WizardStepComponent = this.steps[stepIndex];
+    const nextStep: WizardStepComponent = this.steps[stepIndex];
     this.goToStep(nextStep);
     this._isCompleted = false;
-  };
+  }
 
   public goToStep(step: WizardStepComponent): void {
     if (!this.isCompleted) {
@@ -125,7 +127,7 @@ export class WizardComponent implements AfterContentInit {
 
   public next(): void {
     if (this.hasNextStep) {
-      let nextStep: WizardStepComponent = this.steps[this.activeStepIndex + 1];
+      const nextStep: WizardStepComponent = this.steps[this.activeStepIndex + 1];
 
       this.activeStep.isChecked = true;
 
@@ -139,7 +141,7 @@ export class WizardComponent implements AfterContentInit {
 
   public previous(): void {
     if (this.hasPrevStep) {
-      let prevStep: WizardStepComponent = this.steps[this.activeStepIndex - 1];
+      const prevStep: WizardStepComponent = this.steps[this.activeStepIndex - 1];
       this.activeStep.onPrev.emit();
       prevStep.isDisabled = false;
       this.activeStep = prevStep;
