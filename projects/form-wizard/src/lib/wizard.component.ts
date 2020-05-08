@@ -37,7 +37,7 @@ import {WizardStepComponent} from './wizard-step.component';
 	  </div>`
   ,
   styles: [
-    '.card { height: 100%; }',
+    '.card { height: 100%; min-width: 75vh }',
     '.card-header { background-color: #fff; padding: 0; font-size: 1.25rem; }',
     '.card-block { overflow-y: auto; }',
     '.card-footer { background-color: #fff; border-top: 0 none; }',

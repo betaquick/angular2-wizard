@@ -363,7 +363,29 @@
     <lib-form-wizard #formWizard [doneText]="'Submit'">
 
       <!-- Overview -->
-      <lib-wizard-step #overview [title]="'Overview'" [skipValidation]="true">
+      <lib-wizard-step #Personal [title]="'Personal'" [skipValidation]="true">
+        <div class="jumbotron mt-3">
+
+          <form #PersonalForm
+                novalidate>
+            <!-- Diagnosis -->
+            <div class="form-group">
+              <label class="text-bold"
+                     for="diagnosisId">
+                <span class="text-danger">*</span>
+                Diagnosis
+              </label>
+              <div class="row mx-0">
+                <input type="date">
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </lib-wizard-step>
+
+      <!-- Overview -->
+      <lib-wizard-step #overview [title]="'Config'" [skipValidation]="true">
         <div class="jumbotron mt-3">
 
           <form #overviewForm
@@ -381,6 +403,32 @@
                         required>
                   <option [value]=null
                           disabled> - Select a ICD-10 code below to get started. -
+                  </option>
+                  <option *ngFor="let diagnoses of [{diagnosisId: 1, description: 'ok', name: 'id' }]"
+                          value="{{ diagnoses.diagnosisId }}">
+                    {{ diagnoses.name }} - {{ diagnoses.description }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </lib-wizard-step>
+
+      <!-- Checkout -->
+      <lib-wizard-step #Checkout [title]="'Checkout'" [skipValidation]="true">
+        <div class="jumbotron mt-3">
+
+          <form #CheckoutForm
+                novalidate>
+            <!-- Diagnosis -->
+            <div class="form-group">
+              <div class="row mx-0">
+                <select class="form-control form-control-sm custom-select col-md-6"
+                        required>
+                  <option [value]=null
+                          disabled> - Select Payment Method -
                   </option>
                   <option *ngFor="let diagnoses of [{diagnosisId: 1, description: 'ok', name: 'id' }]"
                           value="{{ diagnoses.diagnosisId }}">

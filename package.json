@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 4243",
+    "build:watch": "ng build form-wizard --watch",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
