@@ -6,6 +6,7 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {FormWizardModule} from '../../../betaquick/angular2-wizard/src/lib/form-wizard.module';
+import {AccordionModule} from 'ngx-bootstrap/accordion';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {FormWizardModule} from '../../../betaquick/angular2-wizard/src/lib/form-
   imports: [
     BrowserModule,
     FormWizardModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AccordionModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,6 +3,8 @@ import {WizardComponent} from './wizard.component';
 import {WizardStepComponent} from './wizard-step.component';
 import {CommonModule} from '@angular/common';
 
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+
 
 @NgModule({
   declarations: [
@@ -10,7 +12,8 @@ import {CommonModule} from '@angular/common';
     WizardStepComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AccordionModule.forRoot()
   ],
   exports: [
     WizardComponent,
