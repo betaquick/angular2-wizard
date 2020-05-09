@@ -11,6 +11,7 @@ import {WizardStepComponent} from './wizard-step.component';
   ]
 })
 export class WizardComponent implements AfterContentInit {
+  @Input() loading = false;
   @Input() doneText = 'Done';
   @Input() nextText = 'Next';
   @Input() skipValidation = false;
@@ -107,8 +108,9 @@ export class WizardComponent implements AfterContentInit {
   }
 
   public complete(): void {
+    this.activeStep.isChecked = true;
+
     if (!this.skipValidation && this.steps.some(step => !step.isValid)) {
-      this.activeStep.isChecked = true;
       this.revertToStep(this.steps.findIndex(step => !step.isValid));
     } else {
       this._isCompleted = true;
