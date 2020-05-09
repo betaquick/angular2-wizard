@@ -1,11 +1,13 @@
 {
   "name": "@betaquick/angular2-wizard",
-  "version": "8.0.1-0",
+  "version": "8.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4243",
-    "build:watch": "ng build @betaquick/angular2-wizard --watch",
-    "publish:package": "ng build @betaquick/angular2-wizard && cd dist/betaquick/angular2-wizard && npm publish",
+    "start": "npm run demo:start",
+    "demo:start": "ng serve --port 4243",
+    "library:watch": "ng build @betaquick/angular2-wizard --watch",
+    "library:version": "cd projects/betaquick/angular2-wizard && npm version",
+    "library:publish": "ng build @betaquick/angular2-wizard && cd dist/betaquick/angular2-wizard && npm publish",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
