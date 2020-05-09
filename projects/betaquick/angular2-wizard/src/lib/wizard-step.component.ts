@@ -11,12 +11,9 @@ export class WizardStepComponent {
   @Input() isValid = true;
   @Input() skipValidation = false;
   @Input() showPrev = true;
-  // tslint:disable-next-line:no-output-on-prefix
-  @Output() onNext: EventEmitter<any> = new EventEmitter<any>();
-  // tslint:disable-next-line:no-output-on-prefix
-  @Output() onPrev: EventEmitter<any> = new EventEmitter<any>();
-  // tslint:disable-next-line:no-output-on-prefix
-  @Output() onComplete: EventEmitter<any> = new EventEmitter<any>();
+  @Output() next: EventEmitter<any> = new EventEmitter<any>();
+  @Output() prev: EventEmitter<any> = new EventEmitter<any>();
+  @Output() completed: EventEmitter<any> = new EventEmitter<any>();
   isDisabled = true;
   isChecked = false;
 

@@ -1,25 +1,37 @@
 <accordion [closeOthers]="true" [isAnimated]="true">
-  <accordion-group *ngFor="let step of steps; let i = index"
+  <accordion-group *ngFor="let step of steps"
                    [isDisabled]="step.isDisabled"
                    [isOpen]="step.isActive"
+                   (isOpenChange)="goToStep(step)"
                    class="mb-2">
 
-    <button accordion-heading
-            class="btn btn-xs btn-link btn-block clearfix text-left"
-            type="button">
+    <span accordion-heading
+          class="h4 clearfix text-left font-weight-normal"
+          [ngClass]="{ 'font-weight-bold': step.isActive, 'text-muted': step.isDisabled }">
       {{ step.title }}
       <i *ngIf="step.isChecked"
          class="ml-1 fas"
          [ngClass]="{'text-warning fa-exclamation-circle': !step.isValid, 'text-success fa-check-circle': step.isValid}"></i>
-    </button>
+    </span>
 
-
-    <div *ngIf="step.isActive" class="card-block">
-      <ng-content></ng-content>
+    <div *ngIf="step.isActive">
+      <ng-container *ngTemplateOutlet="contentRef"></ng-container>
     </div>
 
 
-    <div class="mb-5" [hidden]="isCompleted">
+    <ng-container *ngTemplateOutlet="footerRef"></ng-container>
+
+  </accordion-group>
+
+
+  <ng-template #contentRef>
+    <div class="card-body">
+      <ng-content></ng-content>
+    </div>
+  </ng-template>
+
+  <ng-template #footerRef>
+    <div class="mb-5">
       <hr>
 
       <button type="button" class="btn btn-xs btn-secondary float-left" (click)="previous()" [hidden]="!hasPrevStep || !activeStep.showPrev">
@@ -36,5 +48,6 @@
               [hidden]="hasNextStep">{{ doneText }}
       </button>
     </div>
-  </accordion-group>
+  </ng-template>
+
 </accordion>

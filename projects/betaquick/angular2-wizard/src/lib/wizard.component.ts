@@ -6,32 +6,24 @@ import {WizardStepComponent} from './wizard-step.component';
   templateUrl: 'wizard.component.html',
   styles: [
     '.card { height: 100%; min-width: 75vh }',
-  //   '.card-header { background-color: #fff; padding: 0; font-size: 1.25rem; }',
-    '.card-block { overflow-y: auto; }',
-  //   '.card-footer { background-color: #fff; border-top: 0 none; }',
-  //   '.nav-item { padding: 1rem 0rem; border-bottom: 0.5rem solid #ccc; }',
-  //   '.active { font-weight: bold; color: black; border-bottom-color: #1976D2 !important; }',
-  //   '.enabled { cursor: pointer; border-bottom-color: rgb(88, 162, 234); }',
-  //   '.disabled { color: #ccc; }',
-  //   '.completed { cursor: default; }'
+    '.card-body { overflow-y: auto; }',
+    '.active { font-weight: bold; color: black; border-bottom-color: #1976D2 !important; }',
   ]
 })
 export class WizardComponent implements AfterContentInit {
-  @ContentChildren(WizardStepComponent)
-  wizardSteps: QueryList<WizardStepComponent>;
-  @Input() previousText = 'Previous';
-  @Input() nextText = 'Next';
   @Input() doneText = 'Done';
+  @Input() nextText = 'Next';
   @Input() skipValidation = false;
+  @Input() previousText = 'Previous';
   @Output() cancel: EventEmitter<any> = new EventEmitter<any>();
+  @ContentChildren(WizardStepComponent) wizardSteps: QueryList<WizardStepComponent>;
+  @Output() stepChanged: EventEmitter<WizardStepComponent> = new EventEmitter<WizardStepComponent>();
 
   // tslint:disable-next-line:variable-name
   private _steps: Array<WizardStepComponent> = [];
   // tslint:disable-next-line:variable-name
   private _isCompleted = false;
 
-  // tslint:disable-next-line:no-output-on-prefix
-  @Output() onStepChanged: EventEmitter<WizardStepComponent> = new EventEmitter<WizardStepComponent>();
 
   constructor() {
   }
@@ -59,7 +51,7 @@ export class WizardComponent implements AfterContentInit {
     if (step !== this.activeStep && !step.isDisabled) {
       this.activeStep.isActive = false;
       step.isActive = true;
-      this.onStepChanged.emit(step);
+      this.stepChanged.emit(step);
     }
   }
 
@@ -88,9 +80,7 @@ export class WizardComponent implements AfterContentInit {
   }
 
   public goToStep(step: WizardStepComponent): void {
-    if (!this.isCompleted) {
-      this.activeStep = step;
-    }
+    this.activeStep = step;
   }
 
   public next(): void {
@@ -100,7 +90,7 @@ export class WizardComponent implements AfterContentInit {
       this.activeStep.isChecked = true;
 
       if (this.activeStep.skipValidation || this.activeStep.isValid) {
-        this.activeStep.onNext.emit();
+        this.activeStep.next.emit();
         nextStep.isDisabled = false;
         this.activeStep = nextStep;
       }
@@ -110,7 +100,7 @@ export class WizardComponent implements AfterContentInit {
   public previous(): void {
     if (this.hasPrevStep) {
       const prevStep: WizardStepComponent = this.steps[this.activeStepIndex - 1];
-      this.activeStep.onPrev.emit();
+      this.activeStep.prev.emit();
       prevStep.isDisabled = false;
       this.activeStep = prevStep;
     }
@@ -122,12 +112,8 @@ export class WizardComponent implements AfterContentInit {
       this.revertToStep(this.steps.findIndex(step => !step.isValid));
     } else {
       this._isCompleted = true;
-      this.activeStep.onComplete.emit();
+      this.activeStep.completed.emit();
     }
-  }
-
-  public cancelForm(): void {
-    this.cancel.emit();
   }
 
 }

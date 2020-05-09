@@ -1,5 +1,3 @@
-import * as $ from 'jquery';
-
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
@@ -15,9 +13,9 @@ import {AccordionModule} from 'ngx-bootstrap/accordion';
   ],
   imports: [
     BrowserModule,
-    FormWizardModule.forRoot(),
     BrowserAnimationsModule,
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
+    FormWizardModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
