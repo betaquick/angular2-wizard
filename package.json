@@ -1,13 +1,19 @@
 {
   "name": "@betaquick/angular2-wizard",
-  "version": "4.5.6",
+  "version": "8.0.0",
   "scripts": {
-    "build": "ngc -p tsconfig.json",
-    "lint": "tslint src/**/*.ts",
-    "test": "karma start karma.conf.js",
-    "prepare": "npm run build",
-    "tsc": "tsc"
+    "ng": "ng",
+    "start": "npm run demo:start",
+    "demo:start": "ng serve --port 4243",
+    "library:watch": "ng build @betaquick/angular2-wizard --watch",
+    "library:version": "cd projects/betaquick/angular2-wizard && npm version",
+    "library:publish": "ng build @betaquick/angular2-wizard && cd dist/betaquick/angular2-wizard && npm publish",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
   },
+  "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/betaquick/angular2-wizard.git"
@@ -21,49 +27,45 @@
     "angular2",
     "angular2-component"
   ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/betaquick/angular2-wizard/issues"
-  },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.6"
+    "@angular/animations": "~8.2.14",
+    "@angular/common": "~8.2.14",
+    "@angular/compiler": "~8.2.14",
+    "@angular/core": "~8.2.14",
+    "@angular/forms": "~8.2.14",
+    "@angular/platform-browser": "~8.2.14",
+    "@angular/platform-browser-dynamic": "~8.2.14",
+    "@angular/router": "~8.2.14",
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.5.0",
+    "ngx-bootstrap": "^5.6.1",
+    "rxjs": "~6.4.0",
+    "tslib": "^1.10.0",
+    "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular/common": "^4.0.2",
-    "@angular/compiler": "^4.0.2",
-    "@angular/compiler-cli": "^4.0.2",
-    "@angular/core": "^4.0.2",
-    "@angular/platform-browser": "^4.0.2",
-    "@angular/platform-browser-dynamic": "^4.0.2",
-    "@angular/platform-server": "^4.0.2",
-    "@types/es6-shim": "^0.31.32",
-    "@types/jasmine": "^2.5.42",
-    "@types/selenium-webdriver": "^3.0.1",
-    "awesome-typescript-loader": "^3.0.4-rc.2",
-    "codelyzer": "^2.1.1",
-    "istanbul-instrumenter-loader": "^2.0.0",
-    "jasmine-core": "^2.5.2",
-    "karma": "^1.4.1",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-coverage": "^1.1.1",
-    "karma-jasmine": "^1.1.0",
-    "karma-mocha-reporter": "^2.2.2",
-    "karma-remap-coverage": "^0.1.4",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^2.0.2",
-    "rxjs": "^5.1.0",
-    "source-map-loader": "^0.2.1",
-    "ts-helpers": "^1.1.2",
-    "tslint": "~4.0.0",
-    "typescript": "^2.2.1",
-    "webpack": "^2.2.1",
-    "zone.js": "0.8.5"
-  },
-  "engines": {
-    "node": ">=0.8.0"
-  },
-  "description": "[![npm version](https://badge.fury.io/js/angular2-wizard.svg)](https://badge.fury.io/js/angular2-wizard)\r [![Build Status](https://travis-ci.org/maiyaporn/angular2-wizard.svg?branch=master)](https://travis-ci.org/maiyaporn/angular2-wizard)\r [![Code Climate](https://codeclimate.com/github/maiyaporn/angular2-wizard/badges/gpa.svg)](https://codeclimate.com/github/maiyaporn/angular2-wizard)\r [![Test Coverage](https://codeclimate.com/github/maiyaporn/angular2-wizard/badges/coverage.svg)](https://codeclimate.com/github/maiyaporn/angular2-wizard/coverage)",
-  "homepage": "https://github.com/betaquick/angular2-wizard#readme"
+    "@angular-devkit/build-angular": "~0.803.25",
+    "@angular-devkit/build-ng-packagr": "~0.803.25",
+    "@angular/cli": "~8.3.26",
+    "@angular/compiler-cli": "~8.2.14",
+    "@angular/language-service": "~8.2.14",
+    "@types/node": "~8.9.4",
+    "@types/jasmine": "~3.3.8",
+    "@types/jasminewd2": "~2.0.3",
+    "codelyzer": "^5.0.0",
+    "jasmine-core": "~3.4.0",
+    "jasmine-spec-reporter": "~4.2.1",
+    "karma": "~4.1.0",
+    "karma-chrome-launcher": "~2.2.0",
+    "karma-coverage-istanbul-reporter": "~2.0.1",
+    "karma-jasmine": "~2.0.1",
+    "karma-jasmine-html-reporter": "^1.4.0",
+    "ng-packagr": "^5.4.0",
+    "protractor": "~5.4.0",
+    "ts-node": "~7.0.0",
+    "tsickle": "^0.37.0",
+    "tslint": "~5.15.0",
+    "typescript": "~3.5.3"
+  }
 }
