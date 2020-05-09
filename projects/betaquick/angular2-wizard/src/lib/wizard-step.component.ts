@@ -2,12 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'lib-wizard-step',
-  template:
-        `
-		<div [hidden]="!isActive">
-			<ng-content></ng-content>
-		</div>
-  `
+  templateUrl: 'wizard-step.component.html'
 })
 export class WizardStepComponent {
   @Input() title: string;
