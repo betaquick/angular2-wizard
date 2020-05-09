@@ -3,39 +3,7 @@ import {WizardStepComponent} from './wizard-step.component';
 
 @Component({
   selector: 'lib-form-wizard',
-  template:
-        `
-	  <div class="card">
-		  <div class="card-header">
-			  <ul class="nav nav-justified">
-				  <li class="nav-item" *ngFor="let step of steps"
-				      [ngClass]="{'active': step.isActive, 'enabled': !step.isDisabled, 'disabled': step.isDisabled, 'completed': isCompleted}">
-					  <a (click)="goToStep(step)">{{step.title}}</a>
-					  <i *ngIf="step.isChecked" class="ml-1 fas"
-					     [ngClass]="{'text-warning fa-exclamation-circle': !step.isValid, 'text-success fa-check-circle': step.isValid}">
-					  </i>
-				  </li>
-			  </ul>
-		  </div>
-		  <div class="card-block">
-			  <ng-content></ng-content>
-		  </div>
-		  <div class="card-footer" [hidden]="isCompleted">
-			  <button type="button" class="btn btn-outline-danger float-left mr-2" (click)="cancelForm()">Cancel</button>
-			  <button type="button" class="btn btn-secondary float-left" (click)="previous()" [hidden]="!hasPrevStep || !activeStep.showPrev">
-				  {{ previousText }}
-			  </button>
-			  <button type="button" class="btn btn-secondary float-right" (click)="next()"
-			          [disabled]="!activeStep.skipValidation && activeStep.isChecked && !activeStep.isValid"
-			          [hidden]="!hasNextStep || !activeStep.showNext">{{ nextText }}
-			  </button>
-			  <button type="button" class="btn btn-outline-success float-right" (click)="complete()"
-			          [disabled]="!activeStep.skipValidation && activeStep.isChecked && !activeStep.isValid"
-			          [hidden]="hasNextStep">{{ doneText }}
-			  </button>
-		  </div>
-	  </div>`
-  ,
+  templateUrl: 'wizard.component.html',
   styles: [
     '.card { height: 100%; min-width: 75vh }',
     '.card-header { background-color: #fff; padding: 0; font-size: 1.25rem; }',

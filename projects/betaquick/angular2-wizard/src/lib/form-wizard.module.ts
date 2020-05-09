@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 import {WizardComponent} from './wizard.component';
 import {WizardStepComponent} from './wizard-step.component';
 import {CommonModule} from '@angular/common';
@@ -18,4 +18,9 @@ import {CommonModule} from '@angular/common';
   ]
 })
 export class FormWizardModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: FormWizardModule
+    };
+  }
 }
