@@ -7,7 +7,6 @@ import {WizardStepComponent} from './wizard-step.component';
   styles: [
     '.card { height: 100%; min-width: 75vh }',
     '.card-body { overflow-y: auto; }',
-    '.active { font-weight: bold; color: black; border-bottom-color: #1976D2 !important; }',
   ]
 })
 export class WizardComponent implements AfterContentInit {
