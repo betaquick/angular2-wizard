@@ -5,14 +5,14 @@
                    (isOpenChange)="goToStep(step)"
                    class="mb-2">
 
-    <span accordion-heading
-          class="h4 clearfix text-left font-weight-normal"
-          [ngClass]="{ 'font-weight-bold': step.isActive, 'text-muted': step.isDisabled }">
+    <div accordion-heading
+         class="clearfix text-left font-weight-normal"
+         [ngClass]="{ 'font-weight-bold text-info': step.isActive, 'text-muted': step.isDisabled }">
       {{ step.title }}
       <i *ngIf="step.isChecked"
          class="ml-1 fas"
          [ngClass]="{'text-warning fa-exclamation-circle': !step.isValid, 'text-success fa-check-circle': step.isValid}"></i>
-    </span>
+    </div>
 
     <div *ngIf="step.isActive">
       <ng-container *ngTemplateOutlet="contentRef"></ng-container>
@@ -34,16 +34,16 @@
     <div class="mb-5">
       <hr>
 
-      <button type="button" class="btn btn-xs btn-secondary float-left" (click)="previous()" [hidden]="!hasPrevStep || !activeStep.showPrev">
+      <button type="button" class="btn btn-outline-secondary float-left" (click)="previous()" [hidden]="!hasPrevStep || !activeStep.showPrev">
         {{ previousText }}
       </button>
 
-      <button type="button" class="btn btn-xs btn-secondary float-right" (click)="next()"
+      <button type="button" class="btn btn-outline-info float-right" (click)="next()"
               [disabled]="!activeStep.skipValidation && activeStep.isChecked && !activeStep.isValid"
               [hidden]="!hasNextStep || !activeStep.showNext">{{ nextText }}
       </button>
 
-      <button type="button" class="btn btn-xs btn-outline-success float-right" (click)="complete()"
+      <button type="button" class="btn btn-outline-success float-right" (click)="complete()"
               [disabled]="loading"
               [hidden]="hasNextStep">
         <i *ngIf="loading" class="fa fas fa-circle-notch"></i>
