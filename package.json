@@ -1,6 +1,6 @@
 {
   "name": "@betaquick/angular2-wizard",
-  "version": "8.1.1",
+  "version": "8.1.2",
   "scripts": {
     "ng": "ng",
     "start": "npm run demo:start",
